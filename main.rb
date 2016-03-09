@@ -15,8 +15,10 @@ require 'pry'
 
 def script
   if ARGV[0].nil?
+    puts "No Arg. Standard Script will run."
     "echo 'One successful ssh and script' >> CICICI.txt"
   else
+    puts "Arg given. Running given script once ssh'ed."
     ARGV[0]
   end
 end
