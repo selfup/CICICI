@@ -25,7 +25,7 @@ end
 if `cat ./commit_date.md`.gsub("\n", "") == "#{repo_call}"
   puts "Same"
 else
-  `ssh root@"#{@ip}" "echo 'One successful ssh and script && exit' >> CICICI.txt"`
+  `ssh root@"#{@ip}" "echo 'One successful ssh and script' >> CICICI.txt"`
 end
 
 `rm -rf ./commit_date.md`
