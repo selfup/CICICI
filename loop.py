@@ -9,6 +9,5 @@ while (count < 100):
         time.sleep(60)
 
     except ValueError:
-        script, opscmd = sys.argv
         os.system('ruby main.rb')
         time.sleep(60)
