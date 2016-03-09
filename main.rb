@@ -13,6 +13,14 @@ require 'pry'
 
 @ip = ENV['ip']
 
+def script
+  if ARGV[0].nil?
+    "echo 'One successful ssh and script' >> CICICI.txt"
+  else
+    ARGV[0]
+  end
+end
+
 def parse(response)
   JSON.parse(response.body)
 end
@@ -25,7 +33,7 @@ end
 if `cat ./commit_date.md`.gsub("\n", "") == "#{repo_call}"
   puts "Same"
 else
-  `ssh root@"#{@ip}" "echo 'One successful ssh and script' >> CICICI.txt"`
+  `ssh root@"#{@ip}" "#{script}"`
 end
 
 `rm -rf ./commit_date.md`
