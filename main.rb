@@ -25,7 +25,7 @@ end
 if `cat ./commit_date.md`.gsub("\n", "") == "#{repo_call}"
   puts "Same"
 else
-  `ssh root@"#{@ip}" "echo '#{Time.now}' >> CICICI.txt"`
+  `ssh root@"#{@ip}" "echo '#{Time.now}' >> CICICI.txt && wget https://github.com/selfup/CICICI/blob/master/git_pull.py"`
 end
 
 `rm -rf ./commit_date.md`
