@@ -2,6 +2,9 @@ require 'pry'
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative './../lib/deployer.rb'
+require 'simplecov'
+
+SimpleCov.start
 
 class ItCalls < Minitest::Test
   def d
@@ -22,5 +25,12 @@ class ItCalls < Minitest::Test
     d.check_dir
 
     assert_equal true, `ssh root@"#{@ip}" "ls"`.split("\n").include?("CICICI")
+  end
+
+  def test_the_server_is_pushing_content_once_done
+    `echo "dummy data to make script run and change things" >> db/commit_date.md`
+
+    d.deploy; sleep(10)
+    assert_equal true, `curl universe.rejs.io`.include?("The Universe")
   end
 end
