@@ -33,7 +33,8 @@ if `cat ./commit_date.md`.gsub("\n", "") == "#{repo_call}"
   puts "Same"
 else
   check_dir
-  `ssh root@"#{@ip}" "echo '#{Time.now}' >> CI-LOG.txt && cd CICICI && python git_pull.py"`
+  `ssh root@"#{@ip}" "echo '#{Time.now}' >> CI-LOG.txt && cd CICICI && python git_pull.py && cd ~/oxidizy_up && nohup cargo run --release &"`
+  `ssh root@"#{@ip}" "exit"`
 end
 
 `rm -rf ./commit_date.md`
