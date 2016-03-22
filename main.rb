@@ -22,10 +22,18 @@ def repo_call
   body)[0]["commit"]["committer"]["date"]
 end
 
+def check_dir
+  output = `ssh root@"#{@ip}" "ls"`.split("\n")
+    if !output.include? "CICICI"
+      `ssh root@"#{@ip}" "git clone https://github.com/selfup/CICICI"`
+    end
+end
+
 if `cat ./commit_date.md`.gsub("\n", "") == "#{repo_call}"
   puts "Same"
 else
-  `ssh root@"#{@ip}" "echo '#{Time.now}' >> CICICI-LOG.txt && git_pull.py"`
+  check_dir
+  `ssh root@"#{@ip}" "echo '#{Time.now}' >> CI-LOG.txt && cd CICICI && python git_pull.py"`
 end
 
 `rm -rf ./commit_date.md`
