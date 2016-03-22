@@ -18,7 +18,7 @@ class ItCalls < Minitest::Test
   def test_it_can_git_clone_if_no_repo_is_there
     @ip = ENV['ip']
     `ssh root@"#{@ip}" "rm -rf CICICI"`
-    `ssh root@"#{@ip}" "git clone https://github.com/selfup/CICICI"`
+
     d.check_dir
 
     assert_equal true, `ssh root@"#{@ip}" "ls"`.split("\n").include?("CICICI")
