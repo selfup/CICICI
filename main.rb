@@ -33,8 +33,13 @@ if `cat ./commit_date.md`.gsub("\n", "") == "#{repo_call}"
   puts "Same"
 else
   check_dir
-  `ssh root@"#{@ip}" "echo '#{Time.now}' >> CI-LOG.txt && cd CICICI && python git_pull.py && cd ~/oxidizy_up && nohup cargo run --release &"`
-  `ssh root@"#{@ip}" "exit"`
+  puts "Sleeping for 30. Cya soon :P"
+  `ssh root@"#{@ip}" "reboot"`; sleep (30)
+  puts "Shutting Down nginx"
+  `ssh root@"#{@ip}" "service nginx stop"`
+  puts "Going in to pull and re-serve"
+  `ssh root@"#{@ip}" 'echo "#{Time.now}" >> CI-LOG.txt && cd CICICI && python git_pull.py && cd ~/oxidizy_up && screen -d -m cargo run --release'`
+  puts "Deployed"
 end
 
 `rm -rf ./commit_date.md`
