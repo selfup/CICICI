@@ -6,7 +6,11 @@ Continuous Integration, Integration. Continuous Integration, Integration. Contin
 
 This is a simple add-on of sorts for any project with Travis CI.
 
-Replace the called upon ENV vars in main.rb with the correct credentials.
+Replace the called upon ENV vars in ```./lib/deployer.rb``` with the correct credentials.
+
+If you use rbenv: rbenv-vars should be your go to for ENV vars.
+
+Make sure to ```echo .rbenv-vars >> .gitignore``` before committing!
 
 * `g_k`: means your github token. You can generate one just for scripts in settings.
 
@@ -22,8 +26,10 @@ Here you can write your own little ```cd favorite_project && service nginx stop 
 
 Now you can make your own little custom scripts to automate updating your already built servers.
 
-Travis CI can pause the commit to master and run tests.
+Change the tests to your liking, as well as the directories being manipulated.
 
-This script will check every minute (in the python file) to see if a commit has been made to master.
+This is my more of a pre-baked template that you must understand. But if you are low on time, and all of this makes sense to you, this tool is easy to patch for your needs.
+
+Travis CI can pause the commit to master and run tests.
 
 Now you can just code, push, watch the tests pass, and watch your app be production ready!
