@@ -34,7 +34,7 @@ class Deployer
     puts "Shutting Down nginx"
     `ssh root@"#{@ip}" "service nginx stop"`
     puts "Going in to pull and re-serve"
-    `ssh root@"#{@ip}" 'echo "#{Time.now}" >> CI-LOG.txt && cd CICICI/lib && python git_pull.rb && cd ~/oxidizy_up && screen -d -m cargo run --release'`
+    `ssh root@"#{@ip}" 'echo "#{Time.now}" >> CI-LOG.txt && cd CICICI/lib && ruby git_pull.rb && cd ~/oxidizy_up && screen -d -m cargo run --release'`
     puts "Deployed"
   end
 
